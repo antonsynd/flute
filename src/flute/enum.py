@@ -5,13 +5,13 @@ See flute.controllers.pioneer_dj.ddj_1000 for an example
 """
 
 
-class Enum_(int):
+class _Enum(int):
     def __new__(cls, value):
         x = int.__new__(cls, value)
         return x
 
     def __eq__(self, other):
-        if Enum_ in other.__class__.__bases__:
+        if _Enum in other.__class__.__bases__:
             return type(other) == type(self) and int(self) == int(other)
 
         return other == int(self)

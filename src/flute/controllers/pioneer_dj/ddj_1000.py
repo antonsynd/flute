@@ -1,12 +1,12 @@
 """
-Enums for working with the Pioneer DJ DDJ-1000 controller
+Enums for working with the Pioneer DJ DDJ-1000 controller.
 
 https://www.pioneerdj.com/-/media/pioneerdj/software-info/controller/ddj-1000/ddj-1000_midi_message_list_e1.pdf
 """
 from ... import enum
 
 
-class _MidiChannel(enum.Enum_):
+class _MidiChannel(enum._Enum):
     @property
     def DECK_1(self):
         return _MidiChannel(0x00)
@@ -68,7 +68,7 @@ class _MidiChannel(enum.Enum_):
         return _MidiChannel(0x0E)
 
 
-class _DeckControlNumber(enum.Enum_):
+class _DeckControlNumber(enum._Enum):
     @property
     def JOG_ROTATE(self):
         return _DeckControlNumber(0x21)
@@ -82,7 +82,7 @@ class _DeckControlNumber(enum.Enum_):
         return _DeckControlNumber(0x22)
 
 
-class _MixerControlNumber(enum.Enum_):
+class _MixerControlNumber(enum._Enum):
     @property
     def CHANNEL_FADER_LEAST_SIGNIFICANT_BYTE(self):
         return _MixerControlNumber(0x33)
