@@ -1,12 +1,9 @@
 """
 Provides an OOP interface to FL Studio's mixer module.
 """
-from flute import version
+from flute.version import require_version
 
-import general
 import mixer
-
-_fl_midi_api_version = general.getVersion()
 
 
 def num_mixer_tracks():
@@ -29,7 +26,7 @@ class MixerTrack(int):
     def __new__(cls, index):
         if index >= mixer.trackCount():
             raise IndexError(
-                f'Index must be in the range [0, {num_mixer_tracks()})')
+                'Index must be in the range [0, {})'.format(num_mixer_tracks()))
 
         x = int.__new__(cls, index)
         return x
@@ -64,24 +61,20 @@ class MixerTrack(int):
     def toggle_arm(self):
         mixer.armTrack(self)
 
+    @require_version(2)
     def is_muted(self):
-        version.require_version(2)
-
         return mixer.isTrackMuted(self)
 
+    @require_version(2)
     def mute(self):
-        version.require_version(2)
-
         if not self.is_muted():
             mixer.muteTrack(self)
 
+    @require_version(2)
     def unmute(self):
-        version.require_version(2)
-
         if self.is_muted():
             mixer.muteTrack(self)
 
+    @require_version(8)
     def toggle_mute(self):
-        version.require_version(2)
-
         mixer.muteTrack(self)
