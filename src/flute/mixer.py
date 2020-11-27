@@ -35,6 +35,11 @@ def get_song_tick_pos(mode):
     return mixer.getSongTickPos(mode)
 
 
+def link_to_channel(mode):
+    # FIXME: probably the current track?
+    mixer.linkTrackToChannel(mode)
+
+
 class _MixerTrackPeakMode(_Enum):
     @property
     def L(self):
@@ -206,7 +211,7 @@ class MixerTrack(int):
     def set_route_to(self, dest_index, value):
         mixer.setRouteTo(self, dest_index, value)
 
-    def is_routed_to(dest_index):
+    def is_routed_to(self, dest_index):
         return mixer.getRouteSendActive(self, dest_index)
 
     @staticmethod
@@ -223,6 +228,3 @@ class MixerTrack(int):
     @property
     def recording_file_name(self):
         return mixer.getTrackRecordingFileName(self)
-
-    def link_to_channel(mode):
-        mixer.linkTrackToChannel(mode)
